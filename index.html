@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/reset.css">
+    <link rel="stylesheet" href="./style/main.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <title>avtobus1</title>
+</head>
+<body>
+  
+    <div class="wrapper">
+
+        <aside id="sidebar" class="sidebar">  
+            <div class="header-sidebar">
+                <div class="header-sidebar-content">
+                    <h3 class="title-sidebar">
+                        title
+                    </h3>
+                    <img class="close-sidebar" id="close-sidebar" src="./assets/Close.svg" alt="close-sidebar">
+                </div>
+                <span class="line-bottom-sidebar">
+                </span>
+            </div>
+
+            <div class="content-sidebar-items">
+                <div id="content-sidebar-form" class="content-sidebar-form">
+                    <input class="person" placeholder="Введите ФИО" type="text" >
+                    <input class="number" placeholder="Введите номер" type="tel" >
+                    <input class="" placeholder="Выберите группу" type="text" >
+                </div>
+                <div id="content-sidebar-groups" class="content-sidebar-groups">
+                   
+                </div>
+                <div id="sidebar-new-group" class="sidebar-new-group">
+                    <input type="text" id="groupInput" class="sidebar-new-group-input" placeholder="Введите имя новой группы">
+                    <img id="btn-delete" class="content-sidebar-groups__item-img delete-group" src="./assets/Delete forever.svg" alt="delete">
+                </div>  
+            </div>
+          
+            <div class="sidebar-footer">
+                <button id="btn-adding" style="text-decoration: none;" type="button" class="btn btn-link btn-add-sidebar">Добавить</button>
+                <button id="btn-save" style="background: #005BFE;" type="button" class="btn btn-primary">Сохранить</button>
+            </div>
+        </aside>
+
+        <header class="header">
+            <div class="own-container">
+                <nav class="navigation">
+                    <div class="logo-box">
+                        <img src="./assets/contact-book 1 (Traced).svg" alt="logo">
+                        <span class="logo-description">
+                            Книга контактов
+                        </span>
+                    </div>
+
+                    <div>
+                        <button id="btn-add-contact" type="button" class="btn btn-danger btn-add-contact">
+                            Добавить контакт 
+                            <img class="btn-add-contact-img" src="./assets/Add.svg" alt="">
+                        </button>
+                        <button id="btn-groups" type="button" class="btn btn-primary">Группы</button>
+
+                    </div>
+                    
+                </nav>
+            </div>
+        </header>
+        <main class="main">
+            <div class="own-container">
+                <div id="content" class="content">
+                    <div id="content-list-items" class="content-list-items">
+                        
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script defer src="./js/index.js"></script>
+
+</body>
+</html>
