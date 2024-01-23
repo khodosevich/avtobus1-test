@@ -2,22 +2,12 @@ const addContact = document.getElementById("btn-add-contact");
 const groupContact = document.getElementById("btn-groups");
 const sidebar = document.getElementById("sidebar");
 const closeSidebar = document.getElementById("close-sidebar");
-const deleteContactSidebar = document.getElementById("btn-delete")
-
 const addContactSidebar = document.getElementById("btn-adding")
 const btnSaveGroup = document.getElementById("btn-save-group")
-
 const sidebarNewGroup = document.getElementById("sidebar-new-group");
 let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
-
-const groupsData = data.groups || [];
-const membersData = data.persons || [];
-
 const openGroupsSidebar = document.getElementById("choose-group")
-let personsInGroups = JSON.parse(localStorage.getItem("person")) || [];
-
 const cancelNewGroup = document.querySelector(".btn-cancel")
-
 const savePersonInGroup = document.getElementById("btn-save-person")
 
 addContact.addEventListener('click', ()=> {
@@ -53,6 +43,8 @@ cancelNewGroup.addEventListener('click',() => {
 savePersonInGroup.addEventListener('click', () => {
     saveNewPerson()
 })
+
+
 
 function openSidebar(title,adding) {
     
@@ -183,6 +175,7 @@ function saveNewPerson() {
     const numberInput = document.getElementById("content-sidebar-form-number").value
     const selectInput = document.getElementById("choose-group").value
 
+
     if (!nameInput || !numberInput || !selectInput) {
         alert("Пожалуйста, заполните все поля.");
         return;
@@ -228,7 +221,7 @@ function renderListGroups() {
         for (const key in data.groups) {
             groupsHTML += `
                      <div class="content-list-item" >
-                            <div class="content-list-item-header">
+                            <div class="content-list-item-header" id="${data.groups[key].id}">
                                 <h3 id="content-list-item-title-${data.groups[key].id}" class="content-list-item-title">
                                     ${data.groups[key].name}
                                 </h3>
@@ -249,21 +242,6 @@ function renderListGroups() {
                                                 <img class="delete-img" src="./assets/Delete forever.svg" alt="delete">
                                             </div>
                                         </div>
-                                    
-                                    </div>
-                                    <div class="content-group-list-item">
-                                        <h4>
-                                            Фамилия Имя Отчество
-                                        </h4>
-                                        <div class="content-group-list-item-right">
-                                            <p >
-                                                +7 (ХХХ) ХХХ - ХХ - ХХ
-                                            </p>
-                                            <div class="content-group-list-item-right-imgs" >
-                                                <img class="change-note" src="./assets/Mode edit.svg" alt="mode-edit">
-                                                <img class="delete-img" src="./assets/Delete forever.svg" alt="delete">
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                         </div>`;
@@ -271,23 +249,27 @@ function renderListGroups() {
 
         content.innerHTML = groupsHTML;
 
-        const arrowButtons = document.querySelectorAll('.keyboard-arrow-right');
-        arrowButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const groupId = button.getAttribute('data-id');
-                const groupContent = document.getElementById(`content-group-list-items-${groupId}`);
-                const groupTitle = document.getElementById(`content-list-item-title-${groupId}`);
+        const clickOnItemGroup = document.querySelectorAll(".content-list-item-header");
+        clickOnItemGroup.forEach(item => {
+            item.addEventListener('click', (event) => {
+                const groupId = item.querySelector('.keyboard-arrow-right').getAttribute('data-id');
 
-                groupContent.classList.toggle('open');
-                button.classList.toggle("open")
-                groupTitle.classList.toggle("open")
+                if (item.contains(event.target) && groupId === item.getAttribute('id')) {
 
-                if (groupContent.classList.contains('open')) {
-                    renderGroupMembers(groupId);
+                    const groupContent = document.getElementById(`content-group-list-items-${groupId}`);
+                    const groupTitle = document.getElementById(`content-list-item-title-${groupId}`);
+
+                    groupContent.classList.toggle('open');
+                    item.querySelector('.keyboard-arrow-right').classList.toggle('open');
+                    groupTitle.classList.toggle("open")
+
+                    if (groupContent.classList.contains('open')) {
+                        renderGroupMembers(groupId);
+                    }
                 }
-
-            });
+            })
         });
+
 
     } else {
         content.innerHTML = `<h1 class="title-content">Список контактов пуст</h1>`;
@@ -297,90 +279,119 @@ function renderListGroups() {
 
 function renderGroupMembers(groupId) {
     const groupContent = document.getElementById(`content-group-list-items-${groupId}`);
-    groupContent.innerHTML = '';
 
-    data.persons
-        .filter(person => person.groupId === groupId)
-        .forEach(person => {
-            const listItem = document.createElement('div');
-            listItem.classList.add('content-group-list-item');
-            listItem.innerHTML = `
-                <h4>${person.name}</h4>
-                <div class="content-group-list-item-right">
-                    <p>${person.phone}</p>
-                    <div class="content-group-list-item-right-imgs">
-                        <img id="change-note" class="change-note" data-id="${person.personId}" src="./assets/Mode edit.svg" alt="mode-edit">
-                        <img class="delete-img" data-id="${person.personId}" src="./assets/Delete forever.svg" alt="delete">
-                    </div>
-                </div>`;
-            groupContent.appendChild(listItem);
+    if (groupContent) {
+
+        groupContent.innerHTML = '';
+
+        data.persons
+            .filter(person => person.groupId === groupId)
+            .forEach(person => {
+                const listItem = document.createElement('div');
+                listItem.classList.add('content-group-list-item');
+                listItem.innerHTML = `
+                    <h4>${person.name}</h4>
+                    <div class="content-group-list-item-right">
+                        <p>${person.phone}</p>
+                        <div class="content-group-list-item-right-imgs">
+                            <img id="change-note" class="change-note" data-id="${person.personId}" src="./assets/Mode edit.svg" alt="mode-edit">
+                            <img class="delete-img" data-id="${person.personId}" src="./assets/Delete forever.svg" alt="delete">
+                        </div>
+                    </div>`;
+                groupContent.appendChild(listItem);
+            });
+
+        const changeNoteButtons = groupContent.querySelectorAll('.change-note');
+        changeNoteButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const personId = button.getAttribute('data-id');
+                openNoteModal(personId);
+            });
         });
 
-    const changeNoteButtons = groupContent.querySelectorAll('.change-note');
-    changeNoteButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const personId = button.getAttribute('data-id');
-            openNoteModal(personId);
-        });
-    });
+        const deleteImgButtons = groupContent.querySelectorAll('.delete-img');
+        deleteImgButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const personId = button.getAttribute('data-id');
+                const person = data.persons.find(person => person.personId === personId);
+                const groupId = person.groupId;
 
-    const deleteImgButtons = groupContent.querySelectorAll('.delete-img');
-    deleteImgButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const personId = button.getAttribute('data-id');
-            const person = data.persons.find(person => person.personId === personId);
-            const groupId = person.groupId;
-
-            data.persons = data.persons.filter(person => person.personId !== personId);
-            localStorage.setItem("data", JSON.stringify(data));
-            renderGroupMembers(groupId);
-            const groupTitle = document.getElementById(`content-list-item-title-${groupId}`);
-            groupTitle.classList.remove("open")
+                data.persons = data.persons.filter(person => person.personId !== personId);
+                localStorage.setItem("data", JSON.stringify(data));
+                renderGroupMembers(groupId);
+                const groupTitle = document.getElementById(`content-list-item-title-${groupId}`);
+                groupTitle.classList.remove("open")
+            });
         });
-    });
+    }
 }
 
-function openNoteModal(personId) {
-    const noteModal = document.getElementById('noteModal');
-    const closeNoteModal = document.getElementById('closeNoteModal');
-    const noteTextArea = document.getElementById('noteTextArea');
-    const saveNoteButton = document.getElementById('saveNoteButton');
 
-    const person = data.persons.find(person => person.personId === personId);
+function openNoteModal(currentPersonId) {
 
-    noteTextArea.value = person.note || '';
+    const openModal = document.getElementById('modal-window')
+    const closeModal = document.getElementById('close-modal')
 
-    noteModal.style.display = 'block';
+    const person = data.persons.filter(personId => personId.personId === currentPersonId)
+    const nameInput = document.getElementById("new-name")
+    const numberInput = document.getElementById("new-number")
 
-    closeNoteModal.addEventListener('click', () => {
-        noteModal.style.display = 'none';
+    const savePerson = document.getElementById('save-new-person')
+
+    nameInput.value = person[0].name
+    numberInput.value = person[0].phone
+
+    document.addEventListener('click', (event) => {
+        if (event.target === openModal) {
+            openModal.classList.remove('open');
+        }
     });
 
-    saveNoteButton.addEventListener('click', () => {
-        const newNote = noteTextArea.value;
+    openModal.classList.add('open')
 
-        const updatedPersons = data.persons.map(person => {
-            if (person.personId === personId) {
-                return { ...person, note: newNote };
+    closeModal.addEventListener('click', () => {
+        openModal.classList.remove('open')
+    })
+
+    savePerson.addEventListener('click', () => {
+        const newName = document.getElementById("new-name").value
+        const newNumber = document.getElementById("new-number").value
+
+
+        if(!newName || !newNumber ) {
+            alert("Заполните все поля!");
+            return
+        }
+
+        const phoneNumberRegex = /^\+\d{7,}$/;
+        if (!phoneNumberRegex.test(newNumber)) {
+            alert("Пожалуйста, введите корректный номер телефона.");
+            return;
+        }
+
+        for (const key in data.persons) {
+            if (data.persons[key].personId === currentPersonId){
+
+                data.persons[key].name = newName
+                data.persons[key].phone = newNumber
+
+                break;
             }
-            return person;
-        });
+        }
 
-        data.persons = updatedPersons;
         localStorage.setItem("data", JSON.stringify(data));
+        openModal.classList.remove('open');
 
-        noteModal.style.display = 'none';
+        renderGroupMembers(person[0].groupId)
 
-        renderGroupMembers(person.groupId);
-    });
+    })
+
 }
-
 
 function renderGroupsSidebar () {
     const content = document.getElementById('choose-group');
 
     let groupsHTML = `<option value="-1">Выберите группу:</option>`;
-    console.log(data.groups );
     if (data.groups  && data.groups.length > 0) {
         
 

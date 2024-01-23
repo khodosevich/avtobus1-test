@@ -100,7 +100,7 @@ body.open::after {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 400px;
+  text-align: center;
 }
 
 .content-list-items {
@@ -116,7 +116,7 @@ body.open::after {
     margin: 10px;
   }
 }
-@media (max-width: 670px) {
+@media (max-width: 576px) {
   .content-list-items {
     padding: 28px 0;
   }
@@ -130,7 +130,7 @@ body.open::after {
   flex-direction: column;
   margin: 24px;
 }
-@media (max-width: 670px) {
+@media (max-width: 576px) {
   .content-list-item {
     margin: 12px;
   }
@@ -149,6 +149,7 @@ body.open::after {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  cursor: pointer;
   height: 70px;
   flex-shrink: 0;
   border-radius: 6px;
@@ -184,7 +185,7 @@ body.open::after {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   position: relative;
 }
-@media (max-width: 670px) {
+@media (max-width: 576px) {
   .content-group-list-item {
     flex-direction: column;
     align-items: center;
@@ -205,7 +206,7 @@ body.open::after {
   gap: 24px;
   flex-wrap: wrap;
 }
-@media (max-width: 670px) {
+@media (max-width: 576px) {
   .content-group-list-item-right {
     margin-top: 5px;
     gap: 10px;
@@ -245,7 +246,7 @@ body.open::after {
 }
 
 .delete-img:hover {
-  background: rgb(252, 55, 55);
+  background: rgb(234, 115, 115);
 }
 
 .change-note:hover {
@@ -378,15 +379,10 @@ body.open::after {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.content-sidebar-form-groups {
-  position: relative;
-  width: 264px;
-  height: 38px;
-  flex-shrink: 0;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.05);
-  color: rgba(0, 0, 0, 0.5);
-  padding: 0 12px;
+.form-select {
+  color: rgba(0, 0, 0, 0.5) !important;
+  cursor: pointer;
+  outline: 0;
 }
 
 .content-sidebar-form-groups::after {
@@ -476,9 +472,15 @@ body.open::after {
 
 .btn-add-sidebar {
   visibility: hidden;
+  outline: none;
+  margin-right: 16px;
+}
+.btn-add-sidebar:active {
+  outline: none !important;
 }
 .btn-add-sidebar.open {
   visibility: visible;
+  outline: none;
 }
 
 .btn-save-group {
@@ -496,6 +498,66 @@ body.open::after {
 .btn-save-person.open {
   visibility: visible;
   z-index: 100;
+}
+
+.modal-window {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 900;
+}
+.modal-window.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-window-content {
+  width: 400px;
+  height: 300px;
+  border-radius: 6px;
+  background: #ffffff;
+}
+@media (max-width: 576px) {
+  .modal-window-content {
+    width: 100%;
+    height: 300px;
+    margin: 10px;
+  }
+}
+
+.close-modal {
+  display: flex;
+  justify-content: end;
+  padding: 24px;
+}
+
+.close-modal img {
+  cursor: pointer;
+}
+
+.model-content-form {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  outline: none;
+}
+
+.sidebar-new-group-input {
+  cursor: pointer;
+}
+
+.btn-add-contact {
+  outline: 0;
 }
 
 /*# sourceMappingURL=main.css.map */

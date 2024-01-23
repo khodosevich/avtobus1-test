@@ -115,7 +115,7 @@ body.open::after {
   justify-content: center;
   flex-direction: column;
 
-  margin-top: 400px;
+  text-align: center;
 }
 
 
@@ -135,7 +135,7 @@ body.open::after {
     }
   }
 
-  @media (max-width: 670px) {
+  @media (max-width: 576px) {
     & {
       padding: 28px 0 ;
     }
@@ -152,7 +152,7 @@ body.open::after {
 
   margin: 24px;
 
-  @media (max-width: 670px) {
+  @media (max-width: 576px) {
     & {
       margin: 12px;
     }
@@ -175,6 +175,8 @@ body.open::after {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
+  cursor: pointer;
 
   height: 70px;
   flex-shrink: 0;
@@ -218,7 +220,7 @@ body.open::after {
 
   position: relative;
 
-  @media (max-width: 670px) {
+  @media (max-width: 576px) {
     & {
       flex-direction: column;
       align-items: center;
@@ -244,7 +246,7 @@ body.open::after {
 
   flex-wrap: wrap;
 
-  @media (max-width: 670px) {
+  @media (max-width: 576px) {
     & {
       margin-top: 5px;
       gap: 10px;
@@ -287,7 +289,7 @@ body.open::after {
 }
 
 .delete-img:hover {
-  background: rgb(252, 55, 55);
+  background: rgb(234, 115, 115);
 }
 
 .change-note:hover {
@@ -438,15 +440,11 @@ body.open::after {
   background: rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.5);
 }
-.content-sidebar-form-groups {
-  position: relative;
-  width: 264px;
-  height: 38px;
-  flex-shrink: 0;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.05);
-  color: rgba(0, 0, 0,0.5);
-  padding: 0 12px;
+
+.form-select {
+  color: rgba(0, 0, 0, 0.5) !important;
+  cursor: pointer;
+  outline: 0;
 }
 
 .content-sidebar-form-groups::after {
@@ -505,7 +503,6 @@ body.open::after {
 .sidebar-groups-items {
   display: flex;
   align-items: center;
-  //justify-content: space-between;
   flex-direction: column;
   gap: 16px;
 }
@@ -543,11 +540,18 @@ body.open::after {
 
 .btn-add-sidebar {
   visibility: hidden;
+  outline: none;
+
+  margin-right: 16px;
+
+  &:active {
+    outline: none !important;
+  }
 
   &.open {
     visibility: visible;
+    outline: none;
   }
-
 }
 
 .btn-save-group {
@@ -568,4 +572,77 @@ body.open::after {
 }
 
 //------------------modal----------------------------------//
+
+.modal-window {
+
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  z-index: 900;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+}
+
+.modal-window-content {
+
+  width: 400px;
+  height: 300px;
+
+  border-radius: 6px;
+
+  background: #ffffff;
+
+  @media (max-width: 576px) {
+    &{
+      width: 100%;
+      height: 300px;
+      margin: 10px;
+    }
+  }
+
+}
+
+.close-modal {
+
+  display: flex;
+  justify-content: end;
+  padding: 24px;
+}
+
+.close-modal img {
+  cursor: pointer;
+
+}
+
+.model-content-form {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 16px;
+
+  outline: none;
+}
+
+.sidebar-new-group-input {
+  cursor: pointer;
+}
+
+.btn-add-contact{
+  outline: 0;
+}
 
