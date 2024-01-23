@@ -91,6 +91,7 @@ body.open::after {
 
 /* --------------content---------------- */
 .title-content {
+  height: 600px;
   color: #000;
   font-size: 18px;
   font-weight: 400;
@@ -101,6 +102,7 @@ body.open::after {
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  margin: 0;
 }
 
 .content-list-items {
@@ -182,7 +184,6 @@ body.open::after {
   flex-shrink: 0;
   background: #FFF;
   padding: 24px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
   position: relative;
 }
 @media (max-width: 576px) {
@@ -192,6 +193,28 @@ body.open::after {
     justify-content: center;
     height: 100%;
     padding: 12px;
+  }
+}
+
+.content-group-list-item::before {
+  content: "";
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 24px;
+}
+@media (max-width: 1200px) {
+  .content-group-list-item::before {
+    margin: 0 10%;
+  }
+}
+@media (max-width: 900px) {
+  .content-group-list-item::before {
+    margin: 0 5%;
   }
 }
 
@@ -556,7 +579,7 @@ body.open::after {
   cursor: pointer;
 }
 
-.btn-add-contact {
+.btn-add-contact:focus {
   outline: 0;
 }
 

@@ -171,6 +171,9 @@ function renderGroups() {
 }
 
 function saveNewPerson() {
+
+    console.log("render")
+
     const nameInput = document.getElementById("content-sidebar-form-person").value
     const numberInput = document.getElementById("content-sidebar-form-number").value
     const selectInput = document.getElementById("choose-group").value
@@ -201,7 +204,9 @@ function saveNewPerson() {
 
     data.persons.push(newPerson)
 
-        localStorage.setItem("data", JSON.stringify(data));
+    renderGroupMembers(selectInput)
+
+    localStorage.setItem("data", JSON.stringify(data));
 
     document.getElementById("content-sidebar-form-person").value = "";
     document.getElementById("content-sidebar-form-number").value = "";
@@ -212,6 +217,7 @@ function saveNewPerson() {
 }
 
 function renderListGroups() {
+
 
     const content = document.getElementById('content-list-items');
 
@@ -278,6 +284,9 @@ function renderListGroups() {
 
 
 function renderGroupMembers(groupId) {
+
+    console.log(groupId)
+
     const groupContent = document.getElementById(`content-group-list-items-${groupId}`);
 
     if (groupContent) {
@@ -354,6 +363,9 @@ function openNoteModal(currentPersonId) {
     })
 
     savePerson.addEventListener('click', () => {
+
+        console.log('click')
+
         const newName = document.getElementById("new-name").value
         const newNumber = document.getElementById("new-number").value
 
@@ -369,21 +381,22 @@ function openNoteModal(currentPersonId) {
             return;
         }
 
-        for (const key in data.persons) {
-            if (data.persons[key].personId === currentPersonId){
+        console.log("current: " , currentPersonId)
+        const indexToUpdate = data.persons.findIndex(person => person.personId === currentPersonId);
 
-                data.persons[key].name = newName
-                data.persons[key].phone = newNumber
 
-                break;
-            }
+        if (indexToUpdate !== -1) {
+            console.log(data.persons[indexToUpdate].name, newName)
+            data.persons[indexToUpdate].name = newName;
+            data.persons[indexToUpdate].phone = newNumber;
         }
+
 
         localStorage.setItem("data", JSON.stringify(data));
         openModal.classList.remove('open');
 
-        renderGroupMembers(person[0].groupId)
-
+        data = JSON.parse(localStorage.getItem("data"));
+        renderGroupMembers(data.persons[indexToUpdate].groupId);
     })
 
 }
