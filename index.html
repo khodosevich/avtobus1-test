@@ -16,10 +16,10 @@
     <div class="wrapper">
 
         <aside id="sidebar" class="sidebar">  
-            <div class="header-sidebar">
+            <div class="header-sidebaar">
                 <div class="header-sidebar-content">
                     <h3 class="title-sidebar">
-                        title
+                        
                     </h3>
                     <img class="close-sidebar" id="close-sidebar" src="./assets/Close.svg" alt="close-sidebar">
                 </div>
@@ -29,22 +29,28 @@
 
             <div class="content-sidebar-items">
                 <div id="content-sidebar-form" class="content-sidebar-form">
-                    <input class="person" placeholder="Введите ФИО" type="text" >
-                    <input class="number" placeholder="Введите номер" type="tel" >
-                    <input class="" placeholder="Выберите группу" type="text" >
+                    <input id="content-sidebar-form-person" class="content-sidebar-form-person" placeholder="Введите ФИО" type="text" >
+                    <input id="content-sidebar-form-number" class="content-sidebar-form-number" placeholder="Введите номер" type="tel" >
+                    <select class="content-sidebar-form-groups"  name="Выберите группу" id="choose-group">
+                    </select>
                 </div>
-                <div id="content-sidebar-groups" class="content-sidebar-groups">
-                   
+
+                <div class="sidebar-groups-items">
+                    <div id="content-sidebar-groups" class="content-sidebar-groups">
+
+                    </div>
+                    <div id="sidebar-new-group" class="sidebar-new-group">
+                        <input type="text" id="groupInput" class="sidebar-new-group-input" placeholder="Введите имя новой группы">
+                        <img id="btn-delete" class="delete-img btn-cancel" src="./assets/Delete forever.svg" alt="delete">
+                    </div>
                 </div>
-                <div id="sidebar-new-group" class="sidebar-new-group">
-                    <input type="text" id="groupInput" class="sidebar-new-group-input" placeholder="Введите имя новой группы">
-                    <img id="btn-delete" class="content-sidebar-groups__item-img delete-group" src="./assets/Delete forever.svg" alt="delete">
-                </div>  
+
             </div>
           
             <div class="sidebar-footer">
                 <button id="btn-adding" style="text-decoration: none;" type="button" class="btn btn-link btn-add-sidebar">Добавить</button>
-                <button id="btn-save" style="background: #005BFE;" type="button" class="btn btn-primary">Сохранить</button>
+                <button id="btn-save-group" style="background: #005BFE;" type="button" class="btn btn-primary btn-save-group">Сохранить</button>
+                <button id="btn-save-person" style="background: #005BFE;" type="button" class="btn btn-primary btn-save-person">Сохранить</button>
             </div>
         </aside>
 
@@ -57,24 +63,22 @@
                             Книга контактов
                         </span>
                     </div>
-
-                    <div>
+                    <div class="btns-header">
                         <button id="btn-add-contact" type="button" class="btn btn-danger btn-add-contact">
                             Добавить контакт 
-                            <img class="btn-add-contact-img" src="./assets/Add.svg" alt="">
+                            <img class="btn-add-contact-img" src="./assets/Add.svg" alt="add-contact">
                         </button>
                         <button id="btn-groups" type="button" class="btn btn-primary">Группы</button>
-
                     </div>
                     
                 </nav>
             </div>
         </header>
+
         <main class="main">
             <div class="own-container">
                 <div id="content" class="content">
                     <div id="content-list-items" class="content-list-items">
-                        
                     </div>
                 </div>
             </div>
