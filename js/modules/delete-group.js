@@ -1,6 +1,5 @@
 import {renderAllComponents} from "./render-all-components.js";
 
-let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
 
 export function deleteGroup(event) {
 
@@ -11,6 +10,8 @@ export function deleteGroup(event) {
     const groupsContainer = document.getElementById('content-sidebar-groups');
 
     groupsContainer.removeChild(groupElement);
+    let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
+
     data.groups = data.groups.filter(item => item.name !== groupName)
     localStorage.setItem("data", JSON.stringify(data));
 

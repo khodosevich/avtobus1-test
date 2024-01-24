@@ -1,7 +1,6 @@
 import {generateUniqueId} from "./random-id.js";
 import {renderAllComponents} from "./render-all-components.js";
 
-let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
 const sidebar = document.getElementById("sidebar");
 const sidebarNewGroup = document.getElementById("sidebar-new-group");
 const addContact = document.getElementById("btn-add-contact");
@@ -45,6 +44,7 @@ export function createGroup() {
 
 export function saveNewGroup() {
 
+    let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
 
     const groupInputValue = document.getElementById("groupInput").value;
 

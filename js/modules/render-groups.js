@@ -1,10 +1,8 @@
 import {createGroupElement} from "./create-group-element.js";
-import {renderAllComponents} from "./render-all-components.js";
-
-let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
-
 
 export function renderGroups() {
+
+    let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
 
     const groupsContainer = document.getElementById('content-sidebar-groups');
 

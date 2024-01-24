@@ -1,10 +1,9 @@
 import {renderGroupMembers} from "./render-groups-members.js";
 
-
-let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
-
-
 export function openNoteModal(currentPersonId) {
+
+    let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
+
 
     const openModal = document.getElementById('modal-window')
     const closeModal = document.getElementById('close-modal')

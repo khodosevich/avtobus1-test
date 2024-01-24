@@ -2,10 +2,10 @@ import {generateUniqueId} from "./random-id.js";
 import {renderGroupMembers} from "./render-groups-members.js";
 import {closeSidebarHandler} from "./sidebar.js";
 
-let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
-
 
 export function saveNewPerson() {
+
+    let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
 
     const nameInput = document.getElementById("content-sidebar-form-person").value
     const numberInput = document.getElementById("content-sidebar-form-number").value
@@ -36,10 +36,9 @@ export function saveNewPerson() {
     }
 
     data.persons.push(newPerson)
-
-    renderGroupMembers(selectInput)
-
     localStorage.setItem("data", JSON.stringify(data));
+
+    renderGroupMembers(newPerson.groupId);
 
     document.getElementById("content-sidebar-form-person").value = "";
     document.getElementById("content-sidebar-form-number").value = "";

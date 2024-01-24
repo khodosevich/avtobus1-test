@@ -1,9 +1,8 @@
 import {renderGroupMembers} from "./render-groups-members.js";
 
-let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
-
-
 export function renderListGroups() {
+
+    let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
 
     const content = document.getElementById('content-list-items');
 

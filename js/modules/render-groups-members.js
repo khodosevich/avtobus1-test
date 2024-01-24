@@ -1,10 +1,9 @@
 import {openNoteModal} from "./modal.js";
-import {renderAllComponents} from "./render-all-components.js";
-
-let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
 
 
 export function renderGroupMembers(groupId) {
+
+    let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
 
     const groupContent = document.getElementById(`content-group-list-items-${groupId}`);
 
@@ -47,8 +46,7 @@ export function renderGroupMembers(groupId) {
                 data.persons = data.persons.filter(person => person.personId !== personId);
                 localStorage.setItem("data", JSON.stringify(data));
                 renderGroupMembers(groupId);
-                const groupTitle = document.getElementById(`content-list-item-title-${groupId}`);
-                groupTitle.classList.remove("open")
+
             });
         });
     }

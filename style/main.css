@@ -15,7 +15,6 @@ body.open::after {
 
 .wrapper {
   background: #F6F7F9;
-  height: 100vh;
 }
 
 .own-container {
@@ -90,6 +89,10 @@ body.open::after {
 }
 
 /* --------------content---------------- */
+.content {
+  min-height: 100vh;
+}
+
 .title-content {
   height: 600px;
   color: #000;
@@ -316,7 +319,7 @@ body.open::after {
   top: 0;
   left: 0;
   height: 100vh;
-  width: 312px;
+  min-width: 312px;
   background: #FFF;
   display: flex;
   flex-direction: column;
@@ -324,6 +327,7 @@ body.open::after {
   transition: all 0.5s ease;
   transform: translate(-100%);
   z-index: 100;
+  overflow-y: auto;
 }
 .sidebar.open {
   transform: translateX(0);

@@ -1,8 +1,7 @@
-
-let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
-
-
 export function renderGroupItemHeader () {
+
+    let data = JSON.parse(localStorage.getItem("data")) || { groups: [], persons: [] };
+
     const content = document.getElementById('choose-group');
 
     let groupsHTML = `<option value="-1">Выберите группу:</option>`;
