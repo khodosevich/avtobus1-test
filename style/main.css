@@ -325,6 +325,9 @@ body.open::after {
   transform: translate(-100%);
   z-index: 100;
 }
+.sidebar.open {
+  transform: translateX(0);
+}
 @media (max-width: 500px) {
   .sidebar {
     width: 100%;
@@ -332,10 +335,6 @@ body.open::after {
   .sidebar .line-bottom-sidebar {
     width: 100%;
   }
-}
-
-.sidebar.open {
-  transform: translateX(0);
 }
 
 .header-sidebar-content {
@@ -404,6 +403,7 @@ body.open::after {
 
 .form-select {
   color: rgba(0, 0, 0, 0.5) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
   cursor: pointer;
   outline: 0;
 }
@@ -577,10 +577,6 @@ body.open::after {
 
 .sidebar-new-group-input {
   cursor: pointer;
-}
-
-.btn-add-contact:focus {
-  outline: 0;
 }
 
 /*# sourceMappingURL=main.css.map */

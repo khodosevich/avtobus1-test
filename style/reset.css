@@ -31,3 +31,8 @@ html,
 body {
   font-family: "Arial", sans-serif;
 }
+
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
+}
